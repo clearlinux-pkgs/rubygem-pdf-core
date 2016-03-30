@@ -4,7 +4,7 @@
 #
 Name     : rubygem-pdf-core
 Version  : 0.5.1
-Release  : 4
+Release  : 5
 URL      : https://rubygems.org/downloads/pdf-core-0.5.1.gem
 Source0  : https://rubygems.org/downloads/pdf-core-0.5.1.gem
 Summary  : No detailed summary available
@@ -15,6 +15,7 @@ BuildRequires : rubygem-pdf-inspector
 BuildRequires : rubygem-rake
 BuildRequires : rubygem-rdoc
 BuildRequires : rubygem-rspec
+BuildRequires : rubygem-rspec-core
 BuildRequires : rubygem-simplecov
 
 %description
@@ -29,17 +30,17 @@ gem spec %{SOURCE0} -l --ruby > rubygem-pdf-core.gemspec
 gem build rubygem-pdf-core.gemspec
 
 %install
-gem_dir=$(ruby -e'puts Gem.default_dir')
+%global gem_dir $(ruby -e'puts Gem.default_dir')
 gem install -V \
 --local \
 --force \
---install-dir .${gem_dir} \
+--install-dir .%{gem_dir} \
 --bindir .%{_bindir} \
 pdf-core-0.5.1.gem
 
-mkdir -p %{buildroot}${gem_dir}
-cp -pa .${gem_dir}/* \
-%{buildroot}${gem_dir}
+mkdir -p %{buildroot}%{gem_dir}
+cp -pa .%{gem_dir}/* \
+%{buildroot}%{gem_dir}
 
 if [ -d .%{_bindir} ]; then
 mkdir -p %{buildroot}%{_bindir}
@@ -47,142 +48,43 @@ cp -pa .%{_bindir}/* \
 %{buildroot}%{_bindir}/
 fi
 
+
 %files
 %defattr(-,root,root,-)
-/usr/lib64/ruby/gems/2.2.0/cache/pdf-core-0.5.1.gem
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Annotations/cdesc-Annotations.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/ByteString/cdesc-ByteString.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Destinations/cdesc-Destinations.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/DocumentState/cdesc-DocumentState.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Errors/cdesc-Errors.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/FilterList/%3c%3c-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/FilterList/cdesc-FilterList.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/FilterList/decode_params-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/FilterList/each-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/FilterList/inspect-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/FilterList/names-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/FilterList/new-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/FilterList/normalized-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/FilterList/to_a-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Filters/DCTDecode/cdesc-DCTDecode.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Filters/DCTDecode/decode-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Filters/DCTDecode/encode-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Filters/FlateDecode/cdesc-FlateDecode.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Filters/FlateDecode/decode-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Filters/FlateDecode/encode-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Filters/cdesc-Filters.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/GraphicState/cap_style-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/GraphicState/cdesc-GraphicState.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/GraphicState/color_space-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/GraphicState/dash-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/GraphicState/dash_setting-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/GraphicState/fill_color-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/GraphicState/initialize_copy-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/GraphicState/join_style-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/GraphicState/line_width-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/GraphicState/new-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/GraphicState/stroke_color-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/GraphicStateStack/cdesc-GraphicStateStack.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/GraphicStateStack/current_state-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/GraphicStateStack/empty%3f-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/GraphicStateStack/new-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/GraphicStateStack/present%3f-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/GraphicStateStack/restore_graphic_state-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/GraphicStateStack/save_graphic_state-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/GraphicStateStack/stack-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/LiteralString/cdesc-LiteralString.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/NameTree/Node/cdesc-Node.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/NameTree/Value/cdesc-Value.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/NameTree/cdesc-NameTree.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/ObjectStore/cdesc-ObjectStore.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/OutlineItem/cdesc-OutlineItem.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/OutlineRoot/cdesc-OutlineRoot.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Page/cdesc-Page.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/PageGeometry/cdesc-PageGeometry.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/PdfObject-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Reference/cdesc-Reference.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/add_content-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/before_render-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/cdesc-Renderer.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/close_graphics_state-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/compression_enabled%3f-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/deref-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/finalize_all_page_contents-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/go_to_page-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/graphic_stack-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/graphic_state-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/min_version-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/names%3f-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/names-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/new-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/on_page_create-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/open_graphics_state-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/page_count-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/ref%21-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/ref-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/render-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/render_body-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/render_file-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/render_header-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/render_trailer-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/render_xref-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/restore_graphics_state-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/save_graphics_state-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/start_new_page-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Renderer/state-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Stream/%3c%3c-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Stream/cdesc-Stream.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Stream/compress%21-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Stream/compressed%3f-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Stream/data-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Stream/empty%3f-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Stream/filtered_stream-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Stream/filters-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Stream/inspect-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Stream/length-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Stream/new-c.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Stream/object-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/Text/cdesc-Text.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/cdesc-Core.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/real-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/real_params-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/string_to_hex-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/Core/utf8_to_utf16-i.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/PDF/cdesc-PDF.ri
-/usr/lib64/ruby/gems/2.2.0/doc/pdf-core-0.5.1/ri/cache.ri
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/COPYING
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/GPLv2
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/GPLv3
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/Gemfile
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/LICENSE
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/Rakefile
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/lib/pdf/core.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/lib/pdf/core/annotations.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/lib/pdf/core/byte_string.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/lib/pdf/core/destinations.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/lib/pdf/core/document_state.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/lib/pdf/core/filter_list.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/lib/pdf/core/filters.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/lib/pdf/core/graphics_state.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/lib/pdf/core/literal_string.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/lib/pdf/core/name_tree.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/lib/pdf/core/object_store.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/lib/pdf/core/outline_item.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/lib/pdf/core/outline_root.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/lib/pdf/core/page.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/lib/pdf/core/page_geometry.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/lib/pdf/core/pdf_object.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/lib/pdf/core/reference.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/lib/pdf/core/renderer.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/lib/pdf/core/stream.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/lib/pdf/core/text.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/pdf-core.gemspec
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/spec/decimal_rounding_spec.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/spec/filters_spec.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/spec/name_tree_spec.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/spec/object_store_spec.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/spec/pdf_object_spec.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/spec/reference_spec.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/spec/spec_helper.rb
-/usr/lib64/ruby/gems/2.2.0/gems/pdf-core-0.5.1/spec/stream_spec.rb
-/usr/lib64/ruby/gems/2.2.0/specifications/pdf-core-0.5.1.gemspec
+/usr/lib64/ruby/gems/2.3.0/cache/pdf-core-0.5.1.gem
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/COPYING
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/GPLv2
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/GPLv3
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/Gemfile
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/LICENSE
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/Rakefile
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/lib/pdf/core.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/lib/pdf/core/annotations.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/lib/pdf/core/byte_string.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/lib/pdf/core/destinations.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/lib/pdf/core/document_state.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/lib/pdf/core/filter_list.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/lib/pdf/core/filters.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/lib/pdf/core/graphics_state.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/lib/pdf/core/literal_string.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/lib/pdf/core/name_tree.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/lib/pdf/core/object_store.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/lib/pdf/core/outline_item.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/lib/pdf/core/outline_root.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/lib/pdf/core/page.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/lib/pdf/core/page_geometry.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/lib/pdf/core/pdf_object.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/lib/pdf/core/reference.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/lib/pdf/core/renderer.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/lib/pdf/core/stream.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/lib/pdf/core/text.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/pdf-core.gemspec
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/spec/decimal_rounding_spec.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/spec/filters_spec.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/spec/name_tree_spec.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/spec/object_store_spec.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/spec/pdf_object_spec.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/spec/reference_spec.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/spec/spec_helper.rb
+/usr/lib64/ruby/gems/2.3.0/gems/pdf-core-0.5.1/spec/stream_spec.rb
+/usr/lib64/ruby/gems/2.3.0/specifications/pdf-core-0.5.1.gemspec
