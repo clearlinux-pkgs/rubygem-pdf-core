@@ -4,7 +4,7 @@
 #
 Name     : rubygem-pdf-core
 Version  : 0.5.1
-Release  : 5
+Release  : 6
 URL      : https://rubygems.org/downloads/pdf-core-0.5.1.gem
 Source0  : https://rubygems.org/downloads/pdf-core-0.5.1.gem
 Summary  : No detailed summary available
